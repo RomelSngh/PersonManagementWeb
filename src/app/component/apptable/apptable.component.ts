@@ -53,18 +53,23 @@ export class AppTableComponent {
   get filteredData(): any[] {
     if (!this.searchTerm) return this.items;
 
-    if (this.fields.includes('idNumber')) {
+    if (this.collectionName=="People") {
       return this.items.filter((val) =>
-        val.name.toLowerCase().includes(this.searchTerm) || 
-        val.idNumber.toLowerCase().includes(this.searchTerm) ||
-        val.surname.toLowerCase().includes(this.searchTerm)
+        val.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || 
+        val.idNumber.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        val.surname.toLowerCase().includes(this.searchTerm.toLowerCase())
       );     
-    } else if (this.fields.includes('accountNumber')){
+    } else if (this.collectionName=="Accounts"){
       return this.items.filter((val) =>
         val.accountNumber.toLowerCase().includes(this.searchTerm) 
       );     
-    } else return this.items;
-   
+    } else if (this.collectionName=="Transactions"){
+      return this.items.filter((val) =>
+        val.description.toLowerCase().includes(this.searchTerm) || 
+        val.accountCode.toLowerCase().includes(this.searchTerm)
+      );     
+    }     
+    else return this.items;   
   }
 
   search(event: any): void {
