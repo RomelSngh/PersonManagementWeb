@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+<div class="card">
+    <div class="card-header"><h2>Create a Person</h2></div>
+    <div class="card-body">
+                <div class="container">
+                    <form [formGroup]="personForm" (ngSubmit)="createPerson()">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter your FirstName" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                            <div *ngIf="f['name'].errors['required']">Firstname is required</div>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Surname</label>
+                        <input type="text" class="form-control" formControlName="surname" id="surname" placeholder="Enter Surname" [ngClass]="{ 'is-invalid': submitted && f['surname'].errors }">
+                        <div *ngIf="submitted && f['surname'].errors" class="invalid-feedback">
+                            <div *ngIf="f['surname'].errors['required']">Surname is required</div>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="idNumber" class="form-label">Identity Number</label>
+                        <input type="text" class="form-control" formControlName="idNumber" id="idNumber" placeholder="Enter Identity Number" [ngClass]="{ 'is-invalid': submitted && f['idNumber'].errors }">
+                        <div *ngIf="submitted && f['idNumber'].errors" class="invalid-feedback">
+                            <div *ngIf="f['idNumber'].errors['required']">idNumber is required</div>
+                          </div>
+                          <div *ngIf="submitted && f['idNumber'].errors" class="invalid-feedback">
+                            <div *ngIf="f['idNumber'].errors['pattern']">idNumber must be 13 digits</div>
+                          </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">OK</button>
+                    <button (click)="onCancel()" type="reset" class="btn btn-secondary">Cancel</button>
+                    </form>
+                </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>

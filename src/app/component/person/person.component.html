@@ -1,0 +1,67 @@
+<!-- <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header"><h2>Persons</h2></div>
+                <div class="card-body">
+                    <form>
+                    <div class="d-flex justify-content-between">
+                        <div class="left-align">                
+                            <label class="form-label text-primary-black">Full Text Search</label>
+                            <input
+                            class="form-control ml-2"
+                            type="text"
+                            name="searchTerm"
+                            [(ngModel)]="searchTerm"
+                            (input)="search($event)"
+                          /></div>
+                        <div class="right-align"><button type="button" class="btn btn-primary">Add new person</button></div>
+                    </div>
+                </form>
+                    <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" sortable="code">Code</th>
+                            <th scope="col" sortable="name">Name</th>
+                            <th scope="col" sortable="surname">Surname</th>
+                            <th scope="col" sortable="idnumber">IdNumber</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <ng-container *ngFor="let person of persons; index as i">
+                            <tr
+                              [style.display]="
+                                i / pageSize >= page || i / pageSize < page - 1 ? 'none' : null
+                              "
+                            >
+                              <th scope="row">{{ (page - 1) * pageSize + i + 1 }}</th>
+                              <td>
+                                {{ person.code }}
+                              </td>
+                              <td>{{ person.name  }}</td>
+                              <td>{{ person.surname }}</td>
+                              <td>{{ person.idNumber }}</td>
+                              <td>
+                                  <button class="btn btn-primary btn-sm" (click)="editPerson(person)">Edit</button>
+                                  <button class="btn btn-danger btn-sm" (click)="deletePerson(person.code)">Delete</button>
+                                </td>
+                            </tr>
+                          </ng-container>
+                        </tbody>
+                      </table>
+        <ngb-pagination
+          [collectionSize]="collectionSize"
+          [(page)]="page"
+          [maxSize]="5"
+          [boundaryLinks]="true"
+          [pageSize]="pageSize"
+          class="d-flex justify-content-center"
+        ></ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<app-table [collectionName]="'People'"  [items]="persons" [fields]="['code','name','surname', 'idNumber']" [headers]="['#','code','name','surname', 'idnumber']" [enableSearch]="true" (rowEditted)="editPerson($event)" (rowDeleted)="deletePerson($event)" (addNewRow)="addNewPerson()"></app-table>    

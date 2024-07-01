@@ -1,0 +1,65 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+<div class="card">
+    <div class="card-header"><h2>Edit Transaction</h2></div>
+    <div class="card-body">
+                <div class="container">
+                    <form [formGroup]="transactionForm" (ngSubmit)="updateTransaction()">
+                    <div class="mb-3">
+                        <label for="accountCode" class="form-label">Account</label>
+                        <!-- <input type="text" class="form-control" formControlName="personCode" id="personCode" placeholder="Enter Person Code" [ngClass]="{ 'is-invalid': submitted && f['personCode'].errors }"> -->
+                        <select class="form-control " [(ngModel)]="selectedAccount" formControlName='account' placeholder='Select an Account'
+                        [ngClass]="{ 'is-invalid': submitted && f['account'].errors }">
+                            <option *ngFor='let account of accountList' [ngValue]="account">{{account.accountNumber}}</option>
+                        </select>
+                        <div *ngIf="submitted && f['account'].errors" class="invalid-feedback">
+                            <div *ngIf="f['account'].errors['required']">AccountCode is required</div>
+                            </div>
+                    </div>          
+                    <div class="mb-3">
+                        <!-- <label for="transactionDate" class="form-label">Name</label>
+                        <input type="text" class="form-control" formControlName="transactionDate" id="transactionDate" placeholder="Enter TransactionDate" [ngClass]="{ 'is-invalid': submitted && f['transactionDate'].errors }">
+                        <div *ngIf="submitted && f['transactionDate'].errors" class="invalid-feedback">
+                            <div *ngIf="f['transactionDate'].errors['required']">TransactionDate is required</div>
+                          </div> -->
+                          <label for="transactionDate" class="form-label">Transaction Date</label>
+                          <div class="input-group">
+                              <input
+                                  class="form-control"
+                                  name="dp"
+                                  formControlName = "transactionDate"
+                                  [(ngModel)]="transactionDate"
+                                  ngbDatepicker
+                                  #d="ngbDatepicker"
+                                  id="transactionDate" 
+                                  placeholder="Enter TransactionDate" 
+                                  [ngClass]="{ 'is-invalid': submitted && f['transactionDate'].errors }"
+                              />
+                              <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Amount</label>
+                        <input type="text" class="form-control" formControlName="amount" id="amount" placeholder="Enter Amount" [ngClass]="{ 'is-invalid': submitted && f['amount'].errors }">
+                        <div *ngIf="submitted && f['amount'].errors" class="invalid-feedback">
+                            <div *ngIf="f['amount'].errors['required']">Amount is required</div>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input type="text" class="form-control" formControlName="description" id="description" placeholder="Enter Identity Number" [ngClass]="{ 'is-invalid': submitted && f['description'].errors }">
+                        <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                            <div *ngIf="f['description'].errors['required']">description is required</div>
+                          </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">OK</button>
+                    <button (click)="onCancel()" type="reset" class="btn btn-secondary">Cancel</button>
+                    </form>
+                </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+<div class="card">
+    <div class="card-header"><h2>Create an Account</h2></div>
+    <div class="card-body">
+                <div class="container">
+                    <form [formGroup]="accountForm" (ngSubmit)="createAccount()">
+                    <div class="mb-3">
+                        <label for="accountNumber" class="form-label">Account Number</label>
+                        <input type="text" class="form-control" formControlName="accountNumber" id="accountNumber" placeholder="Enter your AccountNumber" [ngClass]="{ 'is-invalid': submitted && f['accountNumber'].errors }">
+                        <div *ngIf="submitted && f['accountNumber'].errors" class="invalid-feedback">
+                            <div *ngIf="f['accountNumber'].errors['required']">AccountNumber is required</div>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="personCode" class="form-label">Person</label>
+                        <!-- <input type="text" class="form-control" formControlName="personCode" id="personCode" placeholder="Enter Person Code" [ngClass]="{ 'is-invalid': submitted && f['personCode'].errors }"> -->
+                        <select class="form-control " [(ngModel)]="selectedPerson " formControlName='person' placeholder='Select a Person'>
+                            <option *ngFor='let person of personList' [ngValue]="person">{{person.name}}</option>
+                        </select>
+                        
+                        <div *ngIf="submitted && f['person'].errors" class="invalid-feedback">
+                            <div *ngIf="f['person'].errors['required']">PersonCode is required</div>
+                          </div>
+                    </div>                    
+                    <button type="submit" class="btn btn-primary">OK</button>
+                    <button (click)="onCancel()" type="reset" class="btn btn-secondary">Cancel</button>
+                    </form>
+                </div>
+    </div>
+</div>
+        </div>
+    </div>
+</div>

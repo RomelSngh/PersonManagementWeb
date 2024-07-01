@@ -1,0 +1,54 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header"><h2>{{collectionName}}</h2></div>
+                <div class="card-body">
+                    <div *ngIf="enableSearch" class="d-flex justify-content-between">
+                        <div class="left-align">                
+                            <label class="form-label text-primary-black">Full Text Search</label>
+                            <input type="text" [(ngModel)]="searchTerm" placeholder="Search..." class="form-control ml-2" />  
+                        </div>
+                        <div class="right-align"><button type="button" class="btn btn-primary" (click)="addNew()">Add new item</button></div>
+                    </div>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <!-- Column Headers -->
+        <th *ngFor="let header of headers">{{header}}</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let item of filteredData; index as i">
+            <tr
+              [style.display]="
+                i / pageSize >= page || i / pageSize < page - 1 ? 'none' : null
+              "
+            >
+              <th scope="row">{{ (page - 1) * pageSize + i + 1 }}</th>
+              <td *ngFor="let field of fields">{{item[field]}}</td>                
+              <td><button class="btn btn-primary btn-sm" (click)="editItem(item)">Edit</button></td>
+              <td><button class="btn btn-danger btn-sm" (click)="deleteItem(item)">Delete</button></td>
+            </tr>
+          </ng-container>
+
+    </tbody>
+  </table>
+  <ngb-pagination
+  [collectionSize]="items.length"
+  [(page)]="page"
+  [maxSize]="5"
+  [boundaryLinks]="true"
+  [pageSize]="pageSize"
+  class="d-flex justify-content-center"
+></ngb-pagination>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
